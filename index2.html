@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Personal Conversion</title>
+  <link rel="icon" type="image/ico" href="002-cash-1.png"/>
+  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="contenedor">
+    <header>
+      <div class="nav-contenedor">
+        <div class='logo'>
+          <!-- <div><img src="assets/logos/milogo.png" alt="Olga Marin"></div> -->
+          <div><h1 style='color:#14a42c;'>My Personal Converter</h1></div>         
+        </div>
+        <div>
+          <a href='#'>
+            Volver
+          </a>
+        </div>
+      </div>
+    </header>
+      <section>
+        <div class="conversion">
+        <h1 style='text-align: center; color: rgb(49, 49, 43)'>CONVERSOR DE MONEDAS <br> $ARS - BTC - BSS</h1>
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <input 
+            type="number" 
+            id="monto"
+            class = 'form-control my-5' 
+            placeholder='monto a convertir'>      
+          </div> 
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="actual"></label>
+            <select id='de' class = 'form-control'>
+              <option>ARS</option>
+              <option>USD</option>
+              <option>BSS</option>
+              <option>BTC</option>
+            </select>
+          </div>
+          
+          <div class="col-sm-6">
+            <label for="final"></label>
+            <select id='a'  class = 'form-control'>
+              <option>BTC</option>
+              <option>USD</option>
+              <option>ARS</option>
+              <option>BSS</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12 text-center">
+            <button onclick="convertirMoneda()" type="button" class="btn btn-success">Convertir</button>
+          </div>
+        </div> 
+  
+       <div class="row mt-5">
+         <div class="col-sm-12 text-center">
+          <h2 id="conversion"></h2>
+         </div>
+         <br><br>
+       </div>
+      </div>
+      </section>
+
+    <aside>
+
+      <div class="row">
+        <div class="col-md-4 card">
+          <h1>BTC - USD</h1>
+            <p>Bitcoin en dolares.</p>
+            <button class='btn btn-success' onclick=obtenerDatosBTC()>Precio en Coindesk</button>
+        </div>
+        <div class="col-md-4 card">
+          <h1>BSS - USD</h1>
+            <p>Bolivar en DolarToday.</p>
+            <button class='btn btn-success' onclick=obtenerDatosDT()>Precio en DolarToday</button>
+        </div>
+        <div class="col-md-4 card">
+          <h1>ARS - USD</h1>
+            <p>Peso ARS en dolares.</p>
+            <button class='btn btn-success' onclick=obtenerDatosARS()>Precio en GeekLab</button>
+        </div>
+      </div>
+      <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-md-10 mb-5 ">
+          <div class="card shadow-lg" id="resultado">
+          </div>
+          <div class="spinner" id="sp">
+            <div class='d-flex justify-content-center align-items-center'>
+              <div class="spinner-border text-success " role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <a href='#'><h2>Ver Repositorio en GitHub</h2></a>
+        <p>Creado por Olga Marin</p>
+        <p>2020 - &copy; All Rights Reserved </p>
+        
+      </footer>
+      
+      <!-- <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <h1>BTC - USD</h1>
+            <p>Precio del bitcoin en dolares.</p>
+            <button class='btn btn-success' onclick=obtenerDatosBTC()>Precio en Coindesk</button>
+          </div>  
+        </div>
+        <div class="col-md-8">
+          <div class="card" id="resultado1">
+            <div class="spinner" id="sp1">
+              <div class='d-flex justify-content-center align-items-center'>
+                <div class="spinner-border text-success " role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <div class="card">
+            <h1>BSS - USD</h1>
+            <p>Precio del Bolivar en DolarToday.</p>
+            <button class='btn btn-success' onclick=obtenerDatosDT()>Precio en DolarToday</button>
+          </div>  
+        </div>
+        <div class="col-md-8">
+          <div class="card" id="resultado2">
+            <div class="spinner" id="sp2">
+              <div class='d-flex justify-content-center align-items-center'>
+                <div class="spinner-border text-success " role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <div class="card">
+            <h1>ARS - USD</h1>
+            <p>Precio del Peso ARS en dolares.</p>
+            <button class='btn btn-success' onclick=obtenerDatosARS()>Precio en GeekLab</button>
+          </div>  
+        </div>
+        <div class="col-md-8">
+          <div class="card" id="resultado3">
+            <div class="spinner" id="sp3">
+              <div class='d-flex justify-content-center align-items-center'>
+                <div class="spinner-border text-success " role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </aside>  
+  </div>
+
+
+  <!-- JQuery -->
+  <!-- <script src="js/jquery-3.4.1.min.js"></script> -->
+  <!-- <script src="js/ajax.js"></script> -->
+  <!-- <script src="js/moneda.js"></script> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script> -->
+
+  <!-- popper -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script> -->
+
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="js/ajax.js"></script>
+</body>
+
+</html>
+<!-- 
+
+https://api.coindesk.com/v1/bpi/currentprice.json
+
+{"time":
+  {"updated":"Apr 16, 2020 21:24:00 UTC",
+  "updatedISO":"2020-04-16T21:24:00+00:00",
+  "updateduk":"Apr 16, 2020 at 22:24 BST"
+  },
+  "disclaimer":"This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org",
+  "chartName":"Bitcoin",
+  "bpi":{
+      "USD":
+      {
+          "code":"USD",
+          "symbol":"&#36;",
+          "rate":"7,051.5950",
+          "description":"United States Dollar",
+          "rate_float":7051.595
+        },
+    "GBP":
+    {
+        "code":"GBP",
+        "symbol":"&pound;",
+        "rate":"5,660.8371",
+        "description":"British Pound Sterling",
+        "rate_float":5660.8371
+    },
+    "EUR":
+    {
+        "code":"EUR",
+        "symbol":"&euro;",
+        "rate":"6,505.3926",
+        "description":"Euro",
+        "rate_float":6505.3926
+    }
+}
+}
+
+"https://s3.amazonaws.com/dolartoday/data.json"
+
+http://ws.geeklab.com.ar/dolar/get-dolar-json.php
+-->
